@@ -69,7 +69,7 @@ The interactive dashboard includes:
 ## 🚀 Live Dashboard
 
 👉 **Streamlit App:**  
-(Add your Streamlit Community Cloud link here)
+[Streamlit Community Cloud](https://bike-rental-app-dashboard-52ftujdrkgwyyshmyo2kvy.streamlit.app/)
 
 ---
 
