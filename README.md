@@ -38,20 +38,22 @@ The following analyses and visualizations were performed:
 
 ---
 
-## 📈 Streamlit Dashboard Features
+  **📈 Streamlit Dashboard Features**
 
-The interactive dashboard includes:
+  - 📌 **Hourly rental trends**
+  - 📌 **Day-of-week and seasonal usage patterns**
+  - 📌 **Weather impact with confidence intervals**
+  - 📌 **Working vs non-working day comparison**
+  - 📌 **Correlation heatmap of key variables**
 
-- 📌 **Hourly rental trends**
-- 📌 **Day-of-week and seasonal usage patterns**
-- 📌 **Weather impact with confidence intervals**
-- 📌 **Working vs non-working day comparison**
-- 📌 **Correlation heatmap of key variables**
+  **Interactive Widgets (sidebar)**
 
-### Interactive Widgets
-- Year selector
-- Season filter
-- Working / Non-working day filter
+  - **Date range picker** — filter the dataset by calendar dates
+  - **Year selector** — multi-select one or more years
+  - **Season filter** — multi-select seasons (Spring/Summer/Fall/Winter)
+  - **Hour range slider** — focus on specific hours of day
+  - **Weather type filter** — multi-select weather categories
+  - **User type selector** — choose `All`, `Registered`, or `Casual` rentals
 
 ---
 
