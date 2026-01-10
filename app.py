@@ -77,8 +77,64 @@ season_filter = st.sidebar.multiselect(
     default=sorted(df['season'].unique())
 )
 
-# Apply filters
-filtered_df = df[(df['year'].isin(year_filter)) & (df['season'].isin(season_filter))]
+# --- New interactive widgets (4 total) ---
+# 1) Date range, 2) Hour range, 3) Weather filter, 4) User type selector
+
+# Date range widget
+min_date = df['date'].min()
+max_date = df['date'].max()
+date_range = st.sidebar.date_input(
+    "Select Date Range:",
+    value=(min_date, max_date),
+    min_value=min_date,
+    max_value=max_date
+)
+
+# Hour range widget
+hour_range = st.sidebar.slider(
+    "Select Hour Range:", 0, 23, (0, 23)
+)
+
+# Weather type widget
+weather_options = sorted(df['weather_type'].unique())
+weather_filter = st.sidebar.multiselect(
+    "Select Weather Type(s):",
+    options=weather_options,
+    default=weather_options
+)
+
+# User type widget
+user_type = st.sidebar.selectbox(
+    "User Type:",
+    options=["All", "Registered", "Casual"],
+    index=0
+)
+
+# Apply all filters to create `filtered_df`
+if isinstance(date_range, (list, tuple)):
+    start_date, end_date = date_range
+else:
+    start_date = end_date = date_range
+
+start_hour, end_hour = hour_range
+
+mask = (
+    df['year'].isin(year_filter)
+    & df['season'].isin(season_filter)
+    & df['date'].between(start_date, end_date)
+    & df['hour'].between(start_hour, end_hour)
+    & df['weather_type'].isin(weather_filter)
+)
+
+filtered_df = df[mask].copy()
+
+# If the user wants to focus on only registered or casual rentals,
+# override the `count` column in the filtered copy so the rest of the
+# visualizations use the selected user-type's counts transparently.
+if user_type == "Registered":
+    filtered_df['count'] = filtered_df['registered']
+elif user_type == "Casual":
+    filtered_df['count'] = filtered_df['casual']
 
 # Key Metrics
 col1, col2, col3, col4 = st.columns(4)
